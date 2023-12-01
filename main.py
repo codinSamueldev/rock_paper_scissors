@@ -8,6 +8,7 @@ Paper beats rock
 
 import random
 
+
 def get_player_answer():
     #Case validation in order to ensure player choose valid option.  
     while True:
@@ -71,6 +72,7 @@ def combat_time(player, robot, player_wins, robot_wins):
 
     return player_wins, robot_wins
 
+
 def get_winner(player_wins, robot_wins):
 
     if player_wins > robot_wins:
@@ -81,23 +83,24 @@ def get_winner(player_wins, robot_wins):
             OMG it is a draw!"""
     else:
         return """
-            Dude, AI will make us their slaves..."""
-    
-    return winner
+            Dude, AI will enslave us..."""
 
 
 if __name__ == "__main__":
-    player_win = 0
-    robot_win = 0
+    player_wins = 0
+    robot_wins = 0
     
     for rounds in range(3):
         print(f"""
         ------// ROUND {rounds + 1} //------""")
+        #Store player choice every iteration.
         player = get_player_answer()
+        #Store robot choice every iteration.
         robot = get_robot_answer()
-        player_win, robot_win = combat_time(player, robot, player_win, robot_win)
+        #For each iteration, store values for player_wins and robot_wins.
+        player_wins, robot_wins = combat_time(player, robot, player_wins, robot_wins)
 
-    winner = get_winner(player_win, robot_win)
+    winner = get_winner(player_wins, robot_wins)
     print(winner)
 
     
