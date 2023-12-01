@@ -41,7 +41,7 @@ def combat_time(player, robot, player_wins, robot_wins):
             Player won this round.
             
             CURRENT SCORE:
-            Your wins -> {player_wins}
+            Your wins -> {player_wins + 1}
             Robot wins -> {robot_wins}
             """)
 
@@ -64,7 +64,7 @@ def combat_time(player, robot, player_wins, robot_wins):
             
             CURRENT SCORE:
             Your wins -> {player_wins}
-            Robot wins -> {robot_wins}
+            Robot wins -> {robot_wins + 1}
             """)
         
         robot_wins += 1
