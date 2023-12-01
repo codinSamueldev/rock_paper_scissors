@@ -31,11 +31,45 @@ def get_robot_answer():
     
     return robot
 
+
+def combat_time(player, robot):
+    player_wins = 0
+    robot_wins = 0
+    rounds = 0
+
+    while rounds < 3: 
+        print(f"""
+            ------// ROUND {rounds + 1} //------""")
+        
+        if (player == 'r' and robot == "s") or (player == 's' and robot == "p") or (player == 'p' and robot == "r"):
+            print("""
+                Robot won this round.""")
+
+            player_wins +=1
+            rounds += 1
+        else:
+            print("""
+                Robot won this round.""")
+            
+            robot_wins += 1
+            rounds += 1
+
+    if player_wins > robot_wins:
+        print("""
+            You won!""")
+    elif player_wins == robot_wins:
+        print("""
+            OMG it is a draw!""")
+    else:
+        print("""
+            Dude, AI will make us their slaves...""")
+
+    return player_wins, robot_wins
+
+
 if __name__ == "__main__":
     player = get_player_answer()
     robot = get_robot_answer()
+    winner = combat_time(player, robot)
 
-    print(f"""
-    Your answer is {player}
-    Robot answer's {robot}
-    """)
+    print(winner)
