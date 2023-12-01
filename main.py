@@ -32,44 +32,72 @@ def get_robot_answer():
     return robot
 
 
-def combat_time(player, robot):
-    player_wins = 0
-    robot_wins = 0
-    rounds = 0
+def combat_time(player, robot, player_wins, robot_wins):
 
-    while rounds < 3: 
+    if (player == 'r' and robot == "s") or (player == 's' and robot == "p") or (player == 'p' and robot == "r"):
         print(f"""
-            ------// ROUND {rounds + 1} //------""")
-        
-        if (player == 'r' and robot == "s") or (player == 's' and robot == "p") or (player == 'p' and robot == "r"):
-            print("""
-                Robot won this round.""")
-
-            player_wins +=1
-            rounds += 1
-        else:
-            print("""
-                Robot won this round.""")
+            Your choice is {player}
+            Robot choice is {robot}\n
+            Player won this round.
             
-            robot_wins += 1
-            rounds += 1
+            CURRENT SCORE:
+            Your wins -> {player_wins}
+            Robot wins -> {robot_wins}
+            """)
 
-    if player_wins > robot_wins:
-        print("""
-            You won!""")
-    elif player_wins == robot_wins:
-        print("""
-            OMG it is a draw!""")
+        player_wins +=1
+    elif player == robot:
+        print(f"""
+            Your choice {player}
+            Robot choice {robot}\n
+            Hmm funny, it is a draw.
+            
+            CURRENT SCORE:
+            Your wins -> {player_wins}
+            Robot wins -> {robot_wins}
+            """)
     else:
-        print("""
-            Dude, AI will make us their slaves...""")
+        print(f"""
+            Your choice {player}
+            Robot choice {robot}\n
+            Robot won this round.
+            
+            CURRENT SCORE:
+            Your wins -> {player_wins}
+            Robot wins -> {robot_wins}
+            """)
+        
+        robot_wins += 1
 
     return player_wins, robot_wins
 
+def get_winner(player_wins, robot_wins):
+
+    if player_wins > robot_wins:
+        return """
+            You won!"""
+    elif player_wins == robot_wins:
+        return """
+            OMG it is a draw!"""
+    else:
+        return """
+            Dude, AI will make us their slaves..."""
+    
+    return winner
+
 
 if __name__ == "__main__":
-    player = get_player_answer()
-    robot = get_robot_answer()
-    winner = combat_time(player, robot)
+    player_win = 0
+    robot_win = 0
+    
+    for rounds in range(3):
+        print(f"""
+        ------// ROUND {rounds + 1} //------""")
+        player = get_player_answer()
+        robot = get_robot_answer()
+        player_win, robot_win = combat_time(player, robot, player_win, robot_win)
 
+    winner = get_winner(player_win, robot_win)
     print(winner)
+
+    
